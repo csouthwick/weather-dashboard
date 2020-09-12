@@ -5,11 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" integrity="sha512-UyNhw5RNpQaCai2EdC+Js0QL4RlVmiq41DkmCJsRV3ZxipG2L0HhTqIf/H9Hp8ez2EnFlkBnjRGJU2stW3Lj+w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Weather Dashboard</title>
   </head>
 
   <body>
+    <header class="text-center bg-dark text-light p-1">
+      <h1>Weather Dashboard</h1>
+    </header>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 bg-light">
+          <form>
+            <h2>Search for a City:</h2>
+            <div class="input-group">
+              <input type="search" class="form-control" id="city-input" />
+              <div class="input-group-append">
+                <button class="btn btn-primary"><span class="oi oi-magnifying-glass"></span></button>
+              </div>
+            </div>
+          </form>
+          <ul class="list-group" id="search-history"></ul>
+        </div>
+        <div class="col-sm-9" id="weather"></div>
+      </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js" integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg==" crossorigin="anonymous"></script>
