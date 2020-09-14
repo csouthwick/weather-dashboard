@@ -72,16 +72,28 @@ function displayWeather(name, weatherData) {
   // close the current weather card
   tempHTML += "</div></div>";
 
+  // create a div for the forecast
+
+  tempHTML += "<div class='forecast'><h3>5-Day Forecast:</h3>";
+  // bootstrap grid doesn't have the divisions we want for 5 items, just use a regular flexbox
+  tempHTML += "<div class='d-md-flex justify-content-between'>";
+
+  // loop through the days, current day is 0 and can be skipped
+  for (var i = 1; i < 6; i++) {
+    date = moment.unix(weatherData.daily[i].dt).format("M/D/YYYY");
+    tempHTML += "<div class='card bg-primary text-white flex-grow-1'><div class='card-body'>";
+    tempHTML += "<h4 class='card-title'>" + date + "</h4>";
+    tempHTML += "<img src='http://openweathermap.org/img/wn/" + weatherData.daily[i].weather[0].icon + "@2x.png' alt='" + weatherData.daily[i].weather[0].description + "' />";
+    tempHTML += "<p class='card-text'>Temp: " + weatherData.daily[i].temp.day + " &deg;F</p>";
+    tempHTML += "<p class='card-text'>Humidity: " + weatherData.daily[i].humidity + "%</p>";
+    tempHTML += "</div></div>";
+  }
+
+  // close flex div and forecast div
+  tempHTML += "</div></div>";
+
   // test current progress
   weatherEl.innerHTML = tempHTML;
-
-  for (var i = 1; i < 6; i++) {
-    date = moment.unix(weatherData.daily[i].dt);
-    console.log(date.format("M/D/YYYY"));
-    console.log("http://openweathermap.org/img/wn/" + weatherData.daily[i].weather[0].icon + "@2x.png");
-    console.log("Temp: " + weatherData.daily[i].temp.day + " °F");
-    console.log("Humidity: " + weatherData.daily[i].humidity + "%");
-  }
 }
 
 document.getElementById("search-btn").addEventListener("click", function (event) {
