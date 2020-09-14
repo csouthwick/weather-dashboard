@@ -57,15 +57,15 @@ function displayWeather(name, weatherData) {
   // Determine color for UV scale, added as a class name
   // Only need to test if uvi is lower than the next threshold as earlier if statements will catch the lower bounds. Last check is for any other number which is automatically 11+
   if (weatherData.current.uvi < 3) {
-    tempHTML += "low-uv";
+    tempHTML += "low-uv text-light";
   } else if (weatherData.current.uvi < 6) {
-    tempHTML += "moderate-uv";
+    tempHTML += "moderate-uv text-dark";
   } else if (weatherData.current.uvi < 8) {
-    tempHTML += "high-uv";
+    tempHTML += "high-uv text-dark";
   } else if (weatherData.current.uvi < 11) {
-    tempHTML += "very-high-uv";
+    tempHTML += "very-high-uv text-light";
   } else {
-    tempHTML += "extreme-uv";
+    tempHTML += "extreme-uv text-light";
   }
   tempHTML += "'>" + weatherData.current.uvi + "</span></p>";
 
