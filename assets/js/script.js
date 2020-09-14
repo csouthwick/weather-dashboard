@@ -2,9 +2,22 @@ var cityInputEl = document.getElementById("city-input");
 var weatherEl = document.getElementById("weather");
 var apiKey = "b0c7f7890fd4b66f3bf5aff8377ec0db";
 
-function getWeatherCoords() {
-  var city = cityInputEl.value;
-  var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
+function saveCity(cityName) {
+  // get an array of cities if it already exists else create a new array
+  var cities = JSON.parse(localStorage.getItem("cities")) || [];
+
+  // return if the city is already in the array
+  if (cities.includes(cityName)) {
+    return;
+  }
+
+  // else add the city and save to localStorage
+  cities.push(cityName);
+  localStorage.setItem("cities", JSON.stringify(cities));
+}
+
+function getWeatherCoords(cityName) {
+  var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + apiKey;
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
@@ -98,5 +111,7 @@ function displayWeather(name, weatherData) {
 
 document.getElementById("search-btn").addEventListener("click", function (event) {
   event.preventDefault();
-  getWeatherCoords();
+  var city = cityInputEl.value;
+  getWeatherCoords(city);
+  saveCity(city);
 });
