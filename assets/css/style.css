@@ -5,9 +5,19 @@ form h2{
     font-size: 1.4em;
 }
 
+/* restrict max icon height in the <h2> for current weather
+*  calculated from bootstrap's font size and line height for h2 elements 
+*/
 h2 img{
     max-height: calc(2rem * 1.2);
 }
+
+
+/* UVi Styles */
+.low-uv, .moderate-uv, .high-uv, .very-high-uv, .extreme-uv{
+    padding: .75em;
+}
+
 .low-uv{
     background-color: green;
 }
@@ -22,4 +32,9 @@ h2 img{
 }
 .extreme-uv{
     background-color: violet;
+}
+
+/* Gap for forecast cards */
+.forecast > div{
+    gap: 2em;
 }
