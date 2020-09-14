@@ -1,10 +1,15 @@
 var cityInputEl = document.getElementById("city-input");
+var searchHistoryEl = document.getElementById("search-history");
 var weatherEl = document.getElementById("weather");
 var apiKey = "b0c7f7890fd4b66f3bf5aff8377ec0db";
 
-function saveCity(cityName) {
+function loadCities() {
   // get an array of cities if it already exists else create a new array
-  var cities = JSON.parse(localStorage.getItem("cities")) || [];
+  return JSON.parse(localStorage.getItem("cities")) || [];
+}
+
+function saveCity(cityName) {
+  var cities = loadCities();
 
   // return if the city is already in the array
   if (cities.includes(cityName)) {
@@ -14,6 +19,17 @@ function saveCity(cityName) {
   // else add the city and save to localStorage
   cities.push(cityName);
   localStorage.setItem("cities", JSON.stringify(cities));
+
+  displayCities();
+}
+
+function displayCities() {
+  var cities = loadCities();
+  var tempHTML = "";
+  for (var i = 0; i < cities.length; i++) {
+    tempHTML += "<li class='list-group-item'>" + cities[i] + "</li>";
+  }
+  searchHistoryEl.innerHTML = tempHTML;
 }
 
 function getWeatherCoords(cityName) {
@@ -105,7 +121,7 @@ function displayWeather(name, weatherData) {
   // close flex div and forecast div
   tempHTML += "</div></div>";
 
-  // test current progress
+  // add to the page
   weatherEl.innerHTML = tempHTML;
 }
 
@@ -115,3 +131,7 @@ document.getElementById("search-btn").addEventListener("click", function (event)
   getWeatherCoords(city);
   saveCity(city);
 });
+
+
+
+displayCities();
