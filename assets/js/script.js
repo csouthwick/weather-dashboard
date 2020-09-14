@@ -132,6 +132,8 @@ document.getElementById("search-btn").addEventListener("click", function (event)
   saveCity(city);
 });
 
-
+$("#search-history").on("click", "li", function () {
+  getWeatherCoords(this.innerHTML);
+});
 
 displayCities();
