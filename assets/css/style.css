@@ -1,8 +1,15 @@
 html{
     font-family: Arial, Helvetica, sans-serif;
 }
+
+/* form styles */
 form h2{
     font-size: 1.4em;
+}
+
+/* pointer cursor for list items */
+#search-history li{
+    cursor: pointer;
 }
 
 /* restrict max icon height in the <h2> for current weather
