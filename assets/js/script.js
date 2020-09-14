@@ -27,7 +27,7 @@ function getWeather(name, latitude, longitude) {
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data);
+        displayWeather(name, data);
       });
     } else {
       alert("Error: " + response.statusText);
@@ -36,6 +36,23 @@ function getWeather(name, latitude, longitude) {
   }).catch(function (error) {
     alert("Unable to connect to OpenWeather");
   });
+}
+
+function displayWeather(name, weatherData) {
+  var date = moment.unix(weatherData.current.dt);
+  console.log(name + " (" + date.format("M/D/YYYY") + ")");
+  console.log("http://openweathermap.org/img/wn/" + weatherData.current.weather[0].icon + "@2x.png");
+  console.log("Temperature: " + weatherData.current.temp + " °F");
+  console.log("Humidity: " + weatherData.current.humidity + "%");
+  console.log("Wind Speed: " + weatherData.current.wind_speed + " MPH");
+  console.log("UV Index: " + weatherData.current.uvi);
+  for (var i = 1; i < 6; i++) {
+    date = moment.unix(weatherData.daily[i].dt);
+    console.log(date.format("M/D/YYYY"));
+    console.log("http://openweathermap.org/img/wn/" + weatherData.daily[i].weather[0].icon + "@2x.png");
+    console.log("Temp: " + weatherData.daily[i].temp.day + " °F");
+    console.log("Humidity: " + weatherData.daily[i].humidity + "%");
+  }
 }
 
 document.getElementById("search-btn").addEventListener("click", function (event) {
