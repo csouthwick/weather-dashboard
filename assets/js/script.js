@@ -33,7 +33,7 @@ function displayCities() {
 }
 
 function getWeatherCoords(cityName) {
-  var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + apiKey;
+  var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + apiKey;
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
@@ -75,7 +75,7 @@ function displayWeather(name, weatherData) {
 
   // card title with city name, date, and weather icon
   tempHTML += "<h2 class='card-title'>" + name + " (" + date + ") ";
-  tempHTML += "<img src='http://openweathermap.org/img/wn/" + weatherData.current.weather[0].icon + ".png' alt='" + weatherData.current.weather[0].description + "' /></h3>";
+  tempHTML += "<img src='https://openweathermap.org/img/wn/" + weatherData.current.weather[0].icon + ".png' alt='" + weatherData.current.weather[0].description + "' /></h3>";
 
   // temp, humidity, wind speed, and start of UV index
   tempHTML += "<p class='card-text'>Temperature: " + weatherData.current.temp + " &deg;F</p>";
@@ -112,7 +112,7 @@ function displayWeather(name, weatherData) {
     date = moment.unix(weatherData.daily[i].dt).format("M/D/YYYY");
     tempHTML += "<div class='card bg-primary text-white flex-grow-1'><div class='card-body'>";
     tempHTML += "<h4 class='card-title'>" + date + "</h4>";
-    tempHTML += "<img src='http://openweathermap.org/img/wn/" + weatherData.daily[i].weather[0].icon + "@2x.png' alt='" + weatherData.daily[i].weather[0].description + "' />";
+    tempHTML += "<img src='https://openweathermap.org/img/wn/" + weatherData.daily[i].weather[0].icon + "@2x.png' alt='" + weatherData.daily[i].weather[0].description + "' />";
     tempHTML += "<p class='card-text'>Temp: " + weatherData.daily[i].temp.day + " &deg;F</p>";
     tempHTML += "<p class='card-text'>Humidity: " + weatherData.daily[i].humidity + "%</p>";
     tempHTML += "</div></div>";
