@@ -43,11 +43,11 @@ function getWeatherCoords(cityName) {
         getWeather(data.name, data.coord.lat, data.coord.lon);
       });
     } else {
-      alert("Error: " + response.statusText);
+      displayError("Error: " + response.statusText);
     }
 
   }).catch(function (error) {
-    alert("Unable to connect to OpenWeather");
+    displayError("Unable to connect to OpenWeather");
   });
 }
 
@@ -60,11 +60,11 @@ function getWeather(name, latitude, longitude) {
         displayWeather(name, data);
       });
     } else {
-      alert("Error: " + response.statusText);
+      displayError("Error: " + response.statusText);
     }
 
   }).catch(function (error) {
-    alert("Unable to connect to OpenWeather");
+    displayError("Unable to connect to OpenWeather. Please check your internet connection.");
   });
 }
 
@@ -123,6 +123,10 @@ function displayWeather(name, weatherData) {
 
   // add to the page
   weatherEl.innerHTML = tempHTML;
+}
+
+function displayError(errMsg) {
+  weatherEl.innerHTML = "<p class='alert alert-danger'>" + errMsg + "</p>";
 }
 
 document.getElementById("search-btn").addEventListener("click", function (event) {
