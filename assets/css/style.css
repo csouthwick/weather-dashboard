@@ -4,3 +4,22 @@ html{
 form h2{
     font-size: 1.4em;
 }
+
+h2 img{
+    max-height: calc(2rem * 1.2);
+}
+.low-uv{
+    background-color: green;
+}
+.moderate-uv{
+    background-color: yellow;
+}
+.high-uv{
+    background-color: orange;
+}
+.very-high-uv{
+    background-color: red;
+}
+.extreme-uv{
+    background-color: violet;
+}
